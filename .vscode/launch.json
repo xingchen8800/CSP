@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/xingchen/programming/CSP/S/1-模拟",
-      "program": "/home/xingchen/programming/CSP/S/1-模拟/build/Debug/outDebug",
+      "cwd": "/home/xingchen/programming/CSP/考试/240831",
+      "program": "/home/xingchen/programming/CSP/考试/240831/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
