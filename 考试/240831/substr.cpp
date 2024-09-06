@@ -1,41 +1,24 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
-const int N = 500001;
-int a[N], n;
+int n, q, x, p[300005]; //a[l] = x, p[x] = l
+long long k, c[300005]; //c[i] = 开头为1~i的子串数量
 
-struct Node {
-    string s;
-    int l, r;
-} substrs[N * 10];
-
-int cnt = 0;
-
-bool cmp(Node &a, Node &b) {
-    return a.s < b.s;
-}
-
-int main() {
-    freopen("substr.in", "r", stdin);
-    freopen("substr.out", "w", stdout);
-    int q, x;
+int main(){
     cin >> n >> q;
-    for(int i = 1; i <= n; i++) cin >> a[i];
 
-    for(int i = 1; i <= n; i++) {
-        for(int j = i; j <= n; j++) {
-            string s;
-            for(int k = i; k <= j; k++) {
-                s += a[k] + '0';
-            }
-            substrs[cnt++] = (Node){s, i, j};
-        }
-    }
-    sort(substrs, substrs + cnt , cmp);
+	for(int i = 1;i <= n; i++){
+		cin >> x;
+		p[x] = i; //映射
+	}
 
-    while(q--) {
-        cin >> x;
-        cout << substrs[x - 1].l << " " << substrs[x - 1].r << endl;
-    }
-    return 0;
+	for(int i = 1;i <= n; i++)
+		c[i] = c[i - 1] + n - p[i] + 1;  //前缀和
+
+	while(q--) {
+		cin >> k;   //第k大
+		int l = lower_bound(c, c + n + 1, k) - c;   //寻找第一个<=k的元素下表
+		cout << p[l] << " " << k - c[l - 1] + p[l] - 1 << endl;
+	}
+	return 0;
 }
